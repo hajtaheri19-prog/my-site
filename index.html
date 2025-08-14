@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> حسین طاهری - توسعه‌دهنده فول‌استک و طراح UI/UX</title>
+    <title> حسین طاهری - توسعه‌دهنده فرانت اند و طراح UI/UX</title>
     <meta name="description" content="توسعه‌دهنده فرانت اند و طراح UI/UX React، Node.js و طراحی تجربه کاربری">
-    <meta name="keywords" content="توسعه وب, React, Node.js, UI/UX, فول استک, برنامه نویس">
+    <meta name="keywords" content="توسعه وب, React, Next.js, UI/UX, فرانت اند, برنامه نویس">
     <meta name="author" content="حسین طاهری">
     <meta property="og:title" content="حسین طاهری- Frontend Developer">
     <meta property="og:description" content="توسعه‌دهنده فرانت اند حرفه‌ای">
@@ -816,12 +816,19 @@
             transform: rotate(45deg) translate(50%, 50%);
         }
         
-        /* Advanced Responsive Design */
+        /* =================================================================== */
+        /* START: Responsive Design FIX */
+        /* =================================================================== */
         @media (max-width: 768px) {
-            .text-6xl { font-size: 2.5rem; }
+            .text-8xl { font-size: 3.5rem; }
             .text-7xl { font-size: 3rem; }
-            .text-8xl { font-size: 4rem; }
-            
+            .text-6xl { font-size: 2.5rem; }
+            .text-5xl { font-size: 2.2rem; }
+            .text-4xl { font-size: 2rem; }
+            .text-3xl { font-size: 1.5rem; }
+            .text-2xl { font-size: 1.25rem; }
+            .text-xl { font-size: 1rem; }
+
             section {
                 padding: 4rem 1rem !important;
             }
@@ -837,9 +844,41 @@
             }
             
             .glass-card {
-                margin: 1rem 0;
+                padding: 1.5rem; /* کاهش پدینگ کارت‌ها */
+            }
+
+            header nav {
+                padding: 0.5rem 1rem !important; /* کاهش پدینگ هدر */
+            }
+
+            .header-button {
+                padding: 0.6rem 1rem !important; /* کوچک کردن دکمه رزومه */
+                font-size: 0.8rem !important;
+            }
+            
+            .hero-glitch-text {
+                font-size: 1.2rem !important; /* رفع مشکل شکستگی متن */
+                line-height: 1.5 !important;
+            }
+            
+            .hero-action-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-action-buttons button {
+                width: 100%;
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            .social-icons {
+                justify-content: center; /* مرکزچین کردن آیکون‌های اجتماعی */
             }
         }
+        /* =================================================================== */
+        /* END: Responsive Design FIX */
+        /* =================================================================== */
         
         /* Advanced Scroll Indicators */
         .scroll-progress {
@@ -873,6 +912,13 @@
             z-index: 9998;
             opacity: 0.6;
             transition: transform 0.1s ease;
+            display: none; /* غیرفعال کردن روی موبایل */
+        }
+        
+        @media (min-width: 768px) {
+            .cursor-trail {
+                display: block; /* نمایش مجدد روی دسکتاپ */
+            }
         }
         
         /* Advanced Typography */
@@ -965,17 +1011,17 @@
     </div>
 
     <!-- Advanced Header -->
-    <header class="fixed top-0 w-full z-50 p-4">
-        <nav class="glass-morphism rounded-3xl p-4 max-w-7xl mx-auto animate-slide-up">
+    <header class="fixed top-0 w-full z-50 p-2 md:p-4">
+        <nav class="glass-morphism rounded-3xl p-3 max-w-7xl mx-auto animate-slide-up">
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-4 space-x-reverse">
-                    <div class="w-14 h-14 bg-gradient-to-r from-cyber-cyan to-cyber-purple rounded-2xl flex items-center justify-center animate-cyber-pulse relative overflow-hidden">
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-r from-cyber-cyan to-cyber-purple rounded-2xl flex items-center justify-center animate-cyber-pulse relative overflow-hidden">
                         <span class="text-xl font-bold cyber-title">H</span>
                         <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 transform -skew-x-12 animate-pulse"></div>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold text-gradient font-vazir cyber-title">حسین طاهری</h1>
-                        <p class="text-sm text-gray-400 cyber-subtitle">Frontend Developer</p>
+                        <h1 class="text-lg md:text-xl font-bold text-gradient font-vazir cyber-title">حسین طاهری</h1>
+                        <p class="text-xs md:text-sm text-gray-400 cyber-subtitle">Frontend Developer</p>
                     </div>
                 </div>
                 
@@ -1006,8 +1052,8 @@
                     </a>
                 </div>
                 
-                <button class="cyber-button px-6 py-3 rounded-xl font-medium" onclick="downloadResume()">
-                    <i class="fas fa-download ml-2"></i>
+                <button class="cyber-button header-button px-4 py-2 md:px-6 md:py-3 rounded-xl font-medium text-sm" onclick="downloadResume()">
+                    <i class="fas fa-download ml-1 md:ml-2"></i>
                     دانلود رزومه
                 </button>
             </div>
@@ -1015,18 +1061,18 @@
     </header>
 
     <!-- Advanced Hero Section -->
-    <section id="home" class="relative z-10 min-h-screen flex items-center justify-center px-6 pt-20">
+    <section id="home" class="relative z-10 min-h-screen flex items-center justify-center px-4 pt-20">
         <div class="max-w-6xl mx-auto text-center relative z-10">
             <div class="animate-fade-in">
                 <!-- Advanced Terminal Welcome -->
-                <div class="mb-12 glass-card max-w-lg mx-auto p-8 rounded-3xl animate-delay-100">
-                    <div class="flex items-center mb-6">
-                        <div class="w-4 h-4 bg-red-500 rounded-full ml-2 animate-pulse"></div>
-                        <div class="w-4 h-4 bg-yellow-500 rounded-full ml-2 animate-pulse animate-delay-100"></div>
-                        <div class="w-4 h-4 bg-green-500 rounded-full animate-pulse animate-delay-200"></div>
+                <div class="mb-12 glass-card max-w-lg mx-auto p-6 rounded-3xl animate-delay-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-3 h-3 bg-red-500 rounded-full ml-2 animate-pulse"></div>
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full ml-2 animate-pulse animate-delay-100"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse animate-delay-200"></div>
                         <span class="mr-auto text-xs text-gray-400 font-mono">quantum_terminal_v3.0</span>
                     </div>
-                    <div class="text-cyber-cyan font-mono text-sm space-y-3">
+                    <div class="text-cyber-cyan font-mono text-xs md:text-sm space-y-3">
                         <div><span class="text-green-400">$</span> whoami</div>
                         <div><span class="text-purple-400">></span> <span class="typing-effect holographic-text">حسین طاهری - Frontend Developer</span></div>
                         <div><span class="text-green-400">$</span> cat skills.json</div>
@@ -1036,49 +1082,49 @@
                 </div>
                 
                 <!-- Advanced Main Title -->
-                <h2 class="text-5xl md:text-8xl font-black font-vazir mb-12 leading-tight cyber-title">
+                <h2 class="text-5xl md:text-8xl font-black font-vazir mb-8 leading-tight cyber-title">
                     <span class="text-gradient block animate-float animate-delay-200" data-text="من">من</span>
-                    <span class="holographic-text block mt-6 animate-delay-300" data-text="حسین طاهری">حسین طاهری</span>
-                    <span class="text-3xl md:text-5xl block mt-8 text-gray-400 font-dana font-light cyber-subtitle animate-delay-400">هستم</span>
+                    <span class="holographic-text block mt-4" data-text="حسین طاهری">حسین طاهری</span>
+                    <span class="text-3xl md:text-5xl block mt-6 text-gray-400 font-dana font-light cyber-subtitle animate-delay-400">هستم</span>
                 </h2>
                 
                 <!-- Advanced Role Display -->
-                <div class="text-xl md:text-3xl mb-16 text-gray-400 font-medium animate-delay-500">
-                    <div class="glass-card rounded-3xl p-8 inline-block relative overflow-hidden">
-                        <span class="text-glitch text-neon" data-text="Frontend Developer & UI/UX Designer">Frontend Developer & UI/UX Designer</span>
+                <div class="text-xl md:text-3xl mb-12 text-gray-400 font-medium animate-delay-500">
+                    <div class="glass-card rounded-3xl p-4 md:p-8 inline-block relative overflow-hidden">
+                        <span class="text-glitch text-neon hero-glitch-text" data-text="Frontend Developer & UI/UX Designer">Frontend Developer & UI/UX Designer</span>
                         <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyber-cyan to-transparent opacity-10 transform -skew-x-12 animate-pulse"></div>
                     </div>
                 </div>
                 
                 <!-- Advanced Description -->
-                <div class="glass-card rounded-3xl p-10 mb-20 max-w-5xl mx-auto relative overflow-hidden animate-delay-300">
+                <div class="glass-card rounded-3xl p-6 md:p-10 mb-16 max-w-5xl mx-auto relative overflow-hidden animate-delay-300">
                     <div class="absolute inset-0 bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-pink opacity-5 animate-aurora"></div>
-                    <p class="text-lg md:text-xl text-gray-300 leading-relaxed font-dana relative z-10">
-                        با تبدیل <span class="text-cyber-cyan font-bold text-neon">ایده ها و خلاقیت</span> در طراحی و توسعه وب، 
+                    <p class="text-base md:text-xl text-gray-300 leading-relaxed font-dana relative z-10">
+                        با تبدیل <span class="text-cyber-cyan font-bold text-neon">ایده ها و خلاقیت</span> در طراحی و توسعه وب, 
                         تجربه‌های دیجیتال <span class="text-cyber-purple font-bold holographic-text">زیبا</span>، 
                         <span class="text-cyber-pink font-bold text-glitch" data-text="کاربردی">کاربردی</span> و 
                         <span class="text-cyber-green font-bold text-neon">انقلابی</span> می‌سازم
                     </p>
                     
                     <!-- Advanced Tech Stack -->
-                    <div class="flex justify-center space-x-4 space-x-reverse mt-8 flex-wrap gap-3">
-                        <span class="skill-tag animate-delay-100">React</span>
-                        <span class="skill-tag animate-delay-200">Node.js</span>
-                        <span class="skill-tag animate-delay-300">Python</span>
-                        <span class="skill-tag animate-delay-400">UI/UX</span>
-                        <span class="skill-tag animate-delay-500">Dart</span>
-                        <span class="skill-tag animate-delay-300">JavaScript</span>
-                        <span class="skill-tag animate-delay-400">Flutter</span>
+                    <div class="flex justify-center space-x-2 space-x-reverse mt-6 flex-wrap gap-3">
+                        <span class="skill-tag text-sm">React</span>
+                        <span class="skill-tag text-sm">Node.js</span>
+                        <span class="skill-tag text-sm">UI/UX</span>
+                        <span class="skill-tag text-sm">JavaScript</span>
+                        <span class="skill-tag text-sm">Tailwind CSS</span>
+                        
+    
                     </div>
                 </div>
                 
                 <!-- Advanced Action Buttons -->
-                <div class="flex flex-col sm:flex-row gap-8 justify-center items-center animate-delay-500">
-                    <button class="cyber-button px-12 py-5 rounded-2xl text-lg font-semibold magnetic-element" onclick="scrollToSection('projects')">
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center animate-delay-500 hero-action-buttons">
+                    <button class="cyber-button px-10 py-4 rounded-2xl text-lg font-semibold magnetic-element" onclick="scrollToSection('projects')">
                         <i class="fas fa-rocket ml-2"></i>
                         مشاهده پروژه‌ها
                     </button>
-                    <button class="glass-card px-12 py-5 rounded-2xl text-lg font-semibold hover:bg-white hover:bg-opacity-10 transition-all duration-300 magnetic-element" onclick="scrollToSection('contact')">
+                    <button class="glass-card px-10 py-4 rounded-2xl text-lg font-semibold hover:bg-white hover:bg-opacity-10 transition-all duration-300 magnetic-element" onclick="scrollToSection('contact')">
                         <i class="fas fa-envelope ml-2"></i>
                         تماس با من
                     </button>
@@ -1088,26 +1134,26 @@
     </section>
 
     <!-- Advanced About Section -->
-    <section id="about" class="py-24 px-6 relative z-10">
+    <section id="about" class="py-20 px-4 relative z-10">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-20">
-                <h3 class="text-4xl md:text-6xl font-bold text-gradient mb-8 font-vazir cyber-title">درباره من</h3>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto font-dana cyber-subtitle">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl md:text-6xl font-bold text-gradient mb-6 font-vazir cyber-title">درباره من</h3>
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto font-dana cyber-subtitle">
                     توسعه‌دهنده‌ای با اشتیاق برای خلق تجربه‌های دیجیتال بی‌نظیر
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="glass-card p-10 rounded-3xl relative overflow-hidden">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-6 md:p-10 rounded-3xl relative overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-br from-cyber-cyan via-cyber-purple to-cyber-pink opacity-5 animate-plasma"></div>
-                    <h4 class="text-2xl font-bold text-cyber-cyan mb-8 font-vazir cyber-title relative z-10">سفر من در دنیای تکنولوژی</h4>
-                    <div class="space-y-6 text-gray-300 font-dana relative z-10">
+                    <h4 class="text-2xl font-bold text-cyber-cyan mb-6 font-vazir cyber-title relative z-10">سفر من در دنیای تکنولوژی</h4>
+                    <div class="space-y-4 text-gray-300 font-dana relative z-10 text-sm md:text-base">
                         <p class="leading-relaxed">
                             سفر من در دنیای برنامه‌نویسی از چند سال پیش آغاز شد. با علاقه‌ای عمیق به تکنولوژی و طراحی، 
                             توانستم مهارت‌هایم را در زمینه‌های مختلف گسترش دهم.
                         </p>
                         <p class="leading-relaxed">
-                            تخصص من در Tailwind CSS، React، و طراحی UI/UX به من امکان ایجاد راه‌حل‌های کاملی 
+                            تخصص من در JavaScript، React، و طراحی UI/UX به من امکان ایجاد راه‌حل‌های کاملی 
                             از ایده تا محصول نهایی را می‌دهد.
                         </p>
                         <p class="leading-relaxed">
@@ -1116,285 +1162,274 @@
                     </div>
                 </div>
                 
-                <div class="space-y-8">
-                    <div class="glass-card p-8 rounded-2xl relative overflow-hidden">
-                        <div class="flex items-center justify-between mb-6">
-                            <span class="text-lg font-semibold text-cyber-cyan font-vazir">React</span>
-                            <span class="text-cyber-cyan font-bold text-xl">95%</span>
+                <div class="space-y-6">
+                    <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-base font-semibold text-cyber-cyan font-vazir">React</span>
+                            <span class="text-cyber-cyan font-bold text-lg">95%</span>
                         </div>
-                        <div class="w-full bg-gray-800 rounded-full h-3 relative overflow-hidden">
-                            <div class="progress-bar rounded-full h-3" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-card p-8 rounded-2xl relative overflow-hidden">
-                        <div class="flex items-center justify-between mb-6">
-                            <span class="text-lg font-semibold text-cyber-purple font-vazir">Tailwind CSS</span>
-                            <span class="text-cyber-purple font-bold text-xl">90%</span>
-                        </div>
-                        <div class="w-full bg-gray-800 rounded-full h-3 relative overflow-hidden">
-                            <div class="progress-bar rounded-full h-3" style="width: 90%"></div>
+                        <div class="w-full bg-gray-800 rounded-full h-2.5 relative overflow-hidden">
+                            <div class="progress-bar rounded-full h-2.5" style="width: 95%"></div>
                         </div>
                     </div>
                     
-                    <div class="glass-card p-8 rounded-2xl relative overflow-hidden">
-                        <div class="flex items-center justify-between mb-6">
-                            <span class="text-lg font-semibold text-cyber-pink font-vazir">UI/UX Design</span>
-                            <span class="text-cyber-pink font-bold text-xl">88%</span>
+                    <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-base font-semibold text-cyber-purple font-vazir">Tailwind CSS</span>
+                            <span class="text-cyber-purple font-bold text-lg">90%</span>
                         </div>
-                        <div class="w-full bg-gray-800 rounded-full h-3 relative overflow-hidden">
-                            <div class="progress-bar rounded-full h-3" style="width: 88%"></div>
+                        <div class="w-full bg-gray-800 rounded-full h-2.5 relative overflow-hidden">
+                            <div class="progress-bar rounded-full h-2.5" style="width: 90%"></div>
                         </div>
                     </div>
                     
-        
+                    <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-base font-semibold text-cyber-pink font-vazir">UI/UX Design</span>
+                            <span class="text-cyber-pink font-bold text-lg">88%</span>
+                        </div>
+                        <div class="w-full bg-gray-800 rounded-full h-2.5 relative overflow-hidden">
+                            <div class="progress-bar rounded-full h-2.5" style="width: 88%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Advanced Skills Section -->
-    <section id="skills" class="py-24 px-6 relative z-10">
+    <section id="skills" class="py-20 px-4 relative z-10">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-20">
-                <h3 class="text-4xl md:text-6xl font-bold text-gradient mb-8 font-vazir cyber-title">my skills</h3>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto font-dana cyber-subtitle">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl md:text-6xl font-bold text-gradient mb-6 font-vazir cyber-title">مهارت‌های من</h3>
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto font-dana cyber-subtitle">
                     تکنولوژی‌ها و ابزارهایی که با آن‌ها کار می‌کنم
                 </p>
             </div>
             
-        
-                
-                <div class="glass-card p-10 rounded-3xl text-center relative overflow-hidden magnetic-element">
-                    <div class="absolute inset-0 bg-gradient-to-br from-cyber-purple to-cyber-pink opacity-5 animate-liquid-morph"></div>
-                    <div class="service-icon mx-auto relative z-10">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-cyber-purple mb-6 font-vazir cyber-title relative z-10">Frontend</h4>
-                    <div class="flex flex-wrap gap-3 justify-center relative z-10">
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Vue.js</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">Tailwind CSS</span>
-                        <span class="skill-tag">SASS</span>
-                        <span class="skill-tag">Next.js</span>
-                    </div>
+            <div class="glass-card p-6 md:p-10 rounded-3xl text-center relative overflow-hidden magnetic-element">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyber-purple to-cyber-pink opacity-5 animate-liquid-morph"></div>
+                <div class="service-icon mx-auto relative z-10">
+                    <i class="fas fa-server"></i>
                 </div>
-                
-
+                <h4 class="text-xl md:text-2xl font-bold text-cyber-purple mb-6 font-vazir cyber-title relative z-10">Frontend</h4>
+                <div class="flex flex-wrap gap-3 justify-center relative z-10">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Vue.js</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">Tailwind CSS</span>
+                    <span class="skill-tag">SASS</span>
+                    <span class="skill-tag">Next.js</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Advanced Services Section -->
-    <section id="services" class="py-24 px-6 relative z-10">
+    <section id="services" class="py-20 px-4 relative z-10">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-20">
-                <h3 class="text-4xl md:text-6xl font-bold text-gradient mb-8 font-vazir cyber-title">خدمات من</h3>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto font-dana cyber-subtitle">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl md:text-6xl font-bold text-gradient mb-6 font-vazir cyber-title">خدمات من</h3>
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto font-dana cyber-subtitle">
                     خدماتی که ارائه می‌دهم تا پروژه شما را به بهترین شکل پیاده‌سازی کنم
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div class="glass-card p-10 rounded-3xl text-center hover:scale-105 transition-transform duration-300 magnetic-element relative overflow-hidden">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-3xl text-center hover:scale-105 transition-transform duration-300 magnetic-element relative overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-br from-cyber-cyan to-cyber-blue opacity-5 animate-aurora"></div>
                     <div class="service-icon mx-auto relative z-10">
                         <i class="fas fa-code"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-cyber-cyan mb-6 font-vazir cyber-title relative z-10">توسعه وب</h4>
-                    <p class="text-gray-400 font-dana relative z-10">
+                    <h4 class="text-xl font-bold text-cyber-cyan mb-4 font-vazir cyber-title relative z-10">توسعه وب</h4>
+                    <p class="text-gray-400 font-dana relative z-10 text-sm md:text-base">
                         طراحی و توسعه وب‌سایت‌های مدرن و ریسپانسیو با استفاده از جدیدترین تکنولوژی‌ها
                     </p>
                 </div>
                 
-                <div class="glass-card p-10 rounded-3xl text-center hover:scale-105 transition-transform duration-300 magnetic-element relative overflow-hidden">
+                <div class="glass-card p-8 rounded-3xl text-center hover:scale-105 transition-transform duration-300 magnetic-element relative overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-br from-cyber-purple to-cyber-pink opacity-5 animate-aurora"></div>
                     <div class="service-icon mx-auto relative z-10">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-cyber-purple mb-6 font-vazir cyber-title relative z-10">اپلیکیشن موبایل</h4>
-                    <p class="text-gray-400 font-dana relative z-10">
+                    <h4 class="text-xl font-bold text-cyber-purple mb-4 font-vazir cyber-title relative z-10">اپلیکیشن موبایل</h4>
+                    <p class="text-gray-400 font-dana relative z-10 text-sm md:text-base">
                         توسعه اپلیکیشن‌های موبایل کراس پلتفرم با React Native و Flutter
                     </p>
                 </div>
                 
-                <div class="glass-card p-10 rounded-3xl text-center hover:scale-105 transition-transform duration-300 magnetic-element relative overflow-hidden">
+                <div class="glass-card p-8 rounded-3xl text-center hover:scale-105 transition-transform duration-300 magnetic-element relative overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-br from-cyber-pink to-cyber-green opacity-5 animate-aurora"></div>
                     <div class="service-icon mx-auto relative z-10">
                         <i class="fas fa-paint-brush"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-cyber-pink mb-6 font-vazir cyber-title relative z-10">طراحی UI/UX</h4>
-                    <p class="text-gray-400 font-dana relative z-10">
+                    <h4 class="text-xl font-bold text-cyber-pink mb-4 font-vazir cyber-title relative z-10">طراحی UI/UX</h4>
+                    <p class="text-gray-400 font-dana relative z-10 text-sm md:text-base">
                         طراحی رابط کاربری زیبا و تجربه کاربری بهینه برای محصولات دیجیتال
                     </p>
                 </div>
-                
-               
             </div>
         </div>
     </section>
 
     <!-- Advanced Projects Section -->
-    <section id="projects" class="py-24 px-6 relative z-10">
+    <section id="projects" class="py-20 px-4 relative z-10">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-20">
-                <h3 class="text-4xl md:text-6xl font-bold text-gradient mb-8 font-vazir cyber-title">پروژه‌های من</h3>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto font-dana cyber-subtitle">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl md:text-6xl font-bold text-gradient mb-6 font-vazir cyber-title">پروژه‌های من</h3>
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto font-dana cyber-subtitle">
                     نمونه‌ای از کارهای انجام شده
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="glass-card rounded-3xl overflow-hidden hover:scale-105 transition-transform duration-300 magnetic-element relative">
-                    <div class="h-56 bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center relative overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-cyber-cyan to-cyber-purple flex items-center justify-center relative overflow-hidden">
                         <i class="fas fa-shopping-cart text-5xl text-white relative z-10"></i>
                         <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 transform -skew-x-12 animate-pulse"></div>
                     </div>
-                    <div class="p-8">
-                        <h4 class="text-xl font-bold text-cyber-cyan mb-4 font-vazir cyber-title">فروشگاه آنلاین</h4>
-                        <p class="text-gray-400 mb-6 font-dana">
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-cyber-cyan mb-3 font-vazir cyber-title">فروشگاه آنلاین</h4>
+                        <p class="text-gray-400 mb-4 font-dana text-sm">
                             فروشگاه آنلاین کامل با سیستم پرداخت، مدیریت محصولات و پنل کاربری
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
                             <span class="skill-tag text-xs">React</span>
                             <span class="skill-tag text-xs">Node.js</span>
                             <span class="skill-tag text-xs">MongoDB</span>
                         </div>
-                        <button class="cyber-button w-full py-3 rounded-lg">مشاهده پروژه</button>
+                        <button class="cyber-button w-full py-2.5 rounded-lg text-sm">مشاهده پروژه</button>
                     </div>
                 </div>
                 
                 <div class="glass-card rounded-3xl overflow-hidden hover:scale-105 transition-transform duration-300 magnetic-element relative">
-                    <div class="h-56 bg-gradient-to-br from-cyber-purple to-cyber-pink flex items-center justify-center relative overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-cyber-purple to-cyber-pink flex items-center justify-center relative overflow-hidden">
                         <i class="fas fa-chart-line text-5xl text-white relative z-10"></i>
                         <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 transform -skew-x-12 animate-pulse"></div>
                     </div>
-                    <div class="p-8">
-                        <h4 class="text-xl font-bold text-cyber-purple mb-4 font-vazir cyber-title">نرم افزار ثبت و مدیریت کاربران</h4> 
-                        <p class="text-gray-400 mb-6 font-dana">
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-cyber-purple mb-3 font-vazir cyber-title">نرم افزار مدیریت کاربران</h4> 
+                        <p class="text-gray-400 mb-4 font-dana text-sm">
                             مدیریت هوشمند و یکپارچه کاربران با سیستم گزارش‌گیری پیشرفته 
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
                             <span class="skill-tag text-xs">Python</span>
                             <span class="skill-tag text-xs">SQLite</span>
                             <span class="skill-tag text-xs">Tkinter</span>
                         </div>
-                        <button class="cyber-button w-full py-3 rounded-lg">مشاهده پروژه</button>
+                        <button class="cyber-button w-full py-2.5 rounded-lg text-sm">مشاهده پروژه</button>
                     </div>
                 </div>
                 
                 <div class="glass-card rounded-3xl overflow-hidden hover:scale-105 transition-transform duration-300 magnetic-element relative">
-                    <div class="h-56 bg-gradient-to-br from-cyber-pink to-cyber-green flex items-center justify-center relative overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-cyber-pink to-cyber-green flex items-center justify-center relative overflow-hidden">
                         <i class="fas fa-mobile-alt text-5xl text-white relative z-10"></i>
                         <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-20 transform -skew-x-12 animate-pulse"></div>
                     </div>
-                    <div class="p-8">
-                        <h4 class="text-xl font-bold text-cyber-pink mb-4 font-vazir cyber-title">اپلیکیشن رهگیری مرسولات</h4>
-                        <p class="text-gray-400 mb-6 font-dana">
-                            رهگیری مرسوله به صورت زنده با رابط کاربری مدرن، انیمیشن‌های روان و تایم‌لاین تعاملی
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-cyber-pink mb-3 font-vazir cyber-title">اپلیکیشن رهگیری مرسولاتوب </h4>
+                        <p class="text-gray-400 mb-4 font-dana text-sm">
+                            رهگیری مرسوله به صورت زنده با رابط کاربری مدرن و تایم‌لاین تعاملی
                         </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
                             <span class="skill-tag text-xs">Flutter</span>
                             <span class="skill-tag text-xs">Material Design</span>
                             <span class="skill-tag text-xs">Dart</span>
                         </div>
-                        <button class="cyber-button w-full py-3 rounded-lg">مشاهده پروژه</button>
+                        <button class="cyber-button w-full py-2.5 rounded-lg text-sm">مشاهده پروژه</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- =================================================================== -->
-    <!-- Advanced Contact Section (FIXED) -->
-    <!-- =================================================================== -->
-    <section id="contact" class="py-24 px-6 relative z-10">
+    <!-- Advanced Contact Section -->
+    <section id="contact" class="py-20 px-4 relative z-10">
         <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-20">
-                <h3 class="text-4xl md:text-6xl font-bold text-gradient mb-8 font-vazir cyber-title">تماس با من</h3>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto font-dana cyber-subtitle">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl md:text-6xl font-bold text-gradient mb-6 font-vazir cyber-title">تماس با من</h3>
+                <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto font-dana cyber-subtitle">
                     آماده همکاری در پروژه بعدی شما هستم
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-16">
-                <div class="space-y-10">
-                    <div class="glass-card p-8 rounded-2xl magnetic-element relative overflow-hidden">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div class="glass-card p-6 rounded-2xl magnetic-element relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-r from-cyber-cyan to-cyber-blue opacity-5 animate-aurora"></div>
                         <div class="flex items-center space-x-4 space-x-reverse relative z-10">
-                            <div class="w-14 h-14 bg-gradient-to-r from-cyber-cyan to-cyber-purple rounded-xl flex items-center justify-center">
-                                <i class="fas fa-envelope text-xl"></i>
+                            <div class="w-12 h-12 bg-gradient-to-r from-cyber-cyan to-cyber-purple rounded-xl flex items-center justify-center">
+                                <i class="fas fa-envelope text-lg"></i>
                             </div>
                             <div>
-                                <h4 class="text-lg font-bold text-cyber-cyan font-vazir cyber-title">ایمیل</h4>
-                                <p class="text-gray-400">hosseintaheri.org@gmail.com</p>
+                                <h4 class="text-base font-bold text-cyber-cyan font-vazir cyber-title">ایمیل</h4>
+                                <p class="text-gray-400 text-sm">hosseintaheri.org@gmail.com</p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="glass-card p-8 rounded-2xl magnetic-element relative overflow-hidden">
+                    <div class="glass-card p-6 rounded-2xl magnetic-element relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-r from-cyber-purple to-cyber-pink opacity-5 animate-aurora"></div>
                         <div class="flex items-center space-x-4 space-x-reverse relative z-10">
-                            <div class="w-14 h-14 bg-gradient-to-r from-cyber-purple to-cyber-pink rounded-xl flex items-center justify-center">
-                                <i class="fas fa-phone text-xl"></i>
+                            <div class="w-12 h-12 bg-gradient-to-r from-cyber-purple to-cyber-pink rounded-xl flex items-center justify-center">
+                                <i class="fas fa-phone text-lg"></i>
                             </div>
                             <div>
-                                <h4 class="text-lg font-bold text-cyber-purple font-vazir cyber-title">تلفن</h4>
-                                <p class="text-gray-400"></p>
+                                <h4 class="text-base font-bold text-cyber-purple font-vazir cyber-title">تلفن</h4>
+                                <p class="text-gray-400 text-sm">(شماره تماس)</p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="glass-card p-8 rounded-2xl magnetic-element relative overflow-hidden">
+                    <div class="glass-card p-6 rounded-2xl magnetic-element relative overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-r from-cyber-pink to-cyber-green opacity-5 animate-aurora"></div>
                         <div class="flex items-center space-x-4 space-x-reverse relative z-10">
-                            <div class="w-14 h-14 bg-gradient-to-r from-cyber-pink to-cyber-green rounded-xl flex items-center justify-center">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            <div class="w-12 h-12 bg-gradient-to-r from-cyber-pink to-cyber-green rounded-xl flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-lg"></i>
                             </div>
                             <div>
-                                <h4 class="text-lg font-bold text-cyber-pink font-vazir cyber-title">آدرس</h4>
-                                <p class="text-gray-400">تهران، ایران</p>
+                                <h4 class="text-base font-bold text-cyber-pink font-vazir cyber-title">آدرس</h4>
+                                <p class="text-gray-400 text-sm">تهران، ایران</p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="flex space-x-4 space-x-reverse">
-                        <a href="#" class="glass-card p-5 rounded-xl hover:bg-white hover:bg-opacity-10 transition-all duration-300 magnetic-element">
-                            <i class="fab fa-github text-2xl text-cyber-cyan"></i>
+                    <div class="flex space-x-4 space-x-reverse social-icons">
+                        <a href="#" class="glass-card p-4 rounded-xl hover:bg-white hover:bg-opacity-10 transition-all duration-300 magnetic-element">
+                            <i class="fab fa-github text-xl text-cyber-cyan"></i>
                         </a>
-                        <a href="#" class="glass-card p-5 rounded-xl hover:bg-white hover:bg-opacity-10 transition-all duration-300 magnetic-element">
-                            <i class="fab fa-linkedin text-2xl text-cyber-purple"></i>
+                        <a href="#" class="glass-card p-4 rounded-xl hover:bg-white hover:bg-opacity-10 transition-all duration-300 magnetic-element">
+                            <i class="fab fa-linkedin text-xl text-cyber-purple"></i>
                         </a>
-                        <a href="#" class="glass-card p-5 rounded-xl hover:bg-white hover:bg-opacity-10 transition-all duration-300 magnetic-element">
-                            <i class="fab fa-telegram text-2xl text-cyber-pink"></i>
+                        <a href="#" class="glass-card p-4 rounded-xl hover:bg-white hover:bg-opacity-10 transition-all duration-300 magnetic-element">
+                            <i class="fab fa-telegram text-xl text-cyber-pink"></i>
                         </a>
-                        <a href="#" class="glass-card p-5 rounded-xl hover:bg-white hover:bg-opacity-10 transition-all duration-300 magnetic-element">
-                            <i class="fab fa-instagram text-2xl text-cyber-green"></i>
+                        <a href="#" class="glass-card p-4 rounded-xl hover:bg-white hover:bg-opacity-10 transition-all duration-300 magnetic-element">
+                            <i class="fab fa-instagram text-xl text-cyber-green"></i>
                         </a>
                     </div>
                 </div>
                 
-                <div class="glass-card p-10 rounded-3xl relative overflow-hidden">
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-br from-cyber-cyan via-cyber-purple to-cyber-pink opacity-5 animate-plasma"></div>
-                    <form action="https://formspree.io/f/mvgqvrbq" method="POST" class="space-y-8 relative z-10" onsubmit="sendMessage(event)">
+                    <form action="https://formspree.io/f/mvgqvrbq" method="POST" class="space-y-6 relative z-10" onsubmit="sendMessage(event)">
                         <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-3 font-vazir">نام</label>
-                            <input type="text" name="name" class="cyber-input w-full px-4 py-4 rounded-xl focus:border-cyber-cyan focus:outline-none transition-colors duration-300" required>
+                            <label class="block text-sm font-medium text-gray-300 mb-2 font-vazir">نام</label>
+                            <input type="text" name="name" class="cyber-input w-full px-4 py-3 rounded-xl focus:border-cyber-cyan focus:outline-none transition-colors duration-300" required>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-3 font-vazir">ایمیل</label>
-                            <input type="email" name="email" class="cyber-input w-full px-4 py-4 rounded-xl focus:border-cyber-cyan focus:outline-none transition-colors duration-300" required>
+                            <label class="block text-sm font-medium text-gray-300 mb-2 font-vazir">ایمیل</label>
+                            <input type="email" name="email" class="cyber-input w-full px-4 py-3 rounded-xl focus:border-cyber-cyan focus:outline-none transition-colors duration-300" required>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-3 font-vazir">موضوع</label>
-                            <input type="text" name="subject" class="cyber-input w-full px-4 py-4 rounded-xl focus:border-cyber-cyan focus:outline-none transition-colors duration-300" required>
+                            <label class="block text-sm font-medium text-gray-300 mb-2 font-vazir">موضوع</label>
+                            <input type="text" name="subject" class="cyber-input w-full px-4 py-3 rounded-xl focus:border-cyber-cyan focus:outline-none transition-colors duration-300" required>
                         </div>
                         <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-3 font-vazir">پیام</label>
-                            <textarea rows="5" name="message" class="cyber-input w-full px-4 py-4 rounded-xl focus:border-cyber-cyan focus:outline-none transition-colors duration-300 resize-none" required></textarea>
+                            <label class="block text-sm font-medium text-gray-300 mb-2 font-vazir">پیام</label>
+                            <textarea rows="4" name="message" class="cyber-input w-full px-4 py-3 rounded-xl focus:border-cyber-cyan focus:outline-none transition-colors duration-300 resize-none" required></textarea>
                         </div>
-                        <button type="submit" class="cyber-button w-full py-4 rounded-xl font-semibold">
+                        <button type="submit" class="cyber-button w-full py-3 rounded-xl font-semibold">
                             <i class="fas fa-paper-plane ml-2"></i>
                             ارسال پیام
                         </button>
@@ -1403,29 +1438,26 @@
             </div>
         </div>
     </section>
-    <!-- =================================================================== -->
-    <!-- End of Contact Section -->
-    <!-- =================================================================== -->
 
     <!-- Advanced Footer -->
-    <footer class="py-16 px-6 relative z-10">
+    <footer class="pt-16 pb-8 px-4 relative z-10">
         <div class="max-w-6xl mx-auto">
-            <div class="glass-card rounded-3xl p-10 relative overflow-hidden">
+            <div class="glass-card rounded-3xl p-8 relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-pink opacity-5 animate-aurora"></div>
                 <div class="text-center relative z-10">
-                    <div class="flex items-center justify-center space-x-4 space-x-reverse mb-8">
-                        <div class="w-16 h-16 bg-gradient-to-r from-cyber-cyan to-cyber-purple rounded-2xl flex items-center justify-center animate-cyber-pulse">
+                    <div class="flex items-center justify-center space-x-4 space-x-reverse mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-r from-cyber-cyan to-cyber-purple rounded-2xl flex items-center justify-center animate-cyber-pulse">
                             <span class="text-2xl font-bold cyber-title">H</span>
                         </div>
                         <div>
-                            <h4 class="text-2xl font-bold text-gradient font-vazir cyber-title">حسین طاهری</h4>
+                            <h4 class="text-xl font-bold text-gradient font-vazir cyber-title">حسین طاهری</h4>
                             <p class="text-sm text-gray-400 cyber-subtitle">Frontend Developer</p>
                         </div>
                     </div>
-                    <p class="text-gray-400 mb-8 font-dana text-lg">
+                    <p class="text-gray-400 mb-6 font-dana text-base">
                         ساخته شده با <span class="text-cyber-pink animate-pulse">❤️</span> توسط حسین طاهری
                     </p>
-                    <p class="text-sm text-gray-500 font-dana">
+                    <p class="text-xs text-gray-500 font-dana">
                         © 2024 تمامی حقوق محفوظ است | طراحی شده با تکنولوژی‌های مدرن
                     </p>
                 </div>
@@ -1640,6 +1672,7 @@
 
         // Advanced Cursor Trail
         function initializeCursorTrail() {
+            if (window.innerWidth < 768) return; // Don't run on mobile
             const cursorTrail = document.getElementById('cursorTrail');
             if (!cursorTrail) return;
             
@@ -1934,8 +1967,5 @@ Frontend Developer (2019 - 2021)
             }
         }, 8000);
     </script>
-    <!-- =================================================================== -->
-    <!-- End of JavaScript Section -->
-    <!-- =================================================================== -->
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96c87af154d0ebb1',t:'MTc1NDc1NTM3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>

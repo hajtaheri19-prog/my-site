@@ -1,5 +1,26 @@
 {
   "redirects": [
-    { "source": "/:path*", "destination": "https://www.hosseintaheri.org/:path*", "permanent": true }
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "hosseintaheri.org"
+        }
+      ],
+      "destination": "https://www.hosseintaheri.org/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "scheme",
+          "value": "http"
+        }
+      ],
+      "destination": "https://www.hosseintaheri.org/:path*",
+      "permanent": true
+    }
   ]
 }

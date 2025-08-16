@@ -541,7 +541,17 @@
             height: 100%;
         }
         
-    
+        .text-glitch::before {
+            animation: glitch 2s infinite;
+            color: var(--cyber-pink);
+            z-index: -1;
+        }
+        
+        .text-glitch::after {
+            animation: glitch 2s infinite reverse;
+            color: var(--cyber-cyan);
+            z-index: -2;
+        }
         
         .holographic-text {
             background: linear-gradient(45deg, 
@@ -1082,7 +1092,7 @@
                 <!-- Advanced Role Display -->
                 <div class="text-xl md:text-3xl mb-12 text-gray-400 font-medium animate-delay-500">
                     <div class="glass-card rounded-3xl p-4 md:p-8 inline-block relative overflow-hidden">
-                        <span class="text-glitch text-neon hero-glitch-text" data-text="Frontend Developer & UI/UX Designer">Developer & UI/UX Designer</span>
+                        <span class="text-glitch text-neon hero-glitch-text" data-text="Developer & UI/UX Designer">Developer & UI/UX Designer</span>
                         <div class="absolute inset-0 bg-gradient-to-r from-transparent via-cyber-cyan to-transparent opacity-10 transform -skew-x-12 animate-pulse"></div>
                     </div>
                 </div>
@@ -1681,7 +1691,7 @@
         // Download resume function
         function downloadResume() {
             const resumeContent = `
-حسین طاهری - Frontend Developer & UI/UX Designer
+حسین طاهری -  Developer & UI/UX Designer
 
 ═══════════════════════════════════════════════════════════════
 

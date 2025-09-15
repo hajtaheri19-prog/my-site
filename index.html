@@ -329,6 +329,10 @@
             --cyber-red: #ff4757;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Dana', 'Vazirmatn', 'Tahoma', sans-serif;
             background: #000;
@@ -968,6 +972,84 @@
         .animate-delay-300 { animation-delay: 0.3s; }
         .animate-delay-400 { animation-delay: 0.4s; }
         .animate-delay-500 { animation-delay: 0.5s; }
+
+
+        /* =================================================================== */
+        /* START: Floating Navigation & Socials CSS (ADDED) */
+        /* =================================================================== */
+        .floating-nav {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 0.5rem;
+            z-index: 1000;
+            display: flex;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .floating-nav:hover {
+            transform: translateX(-50%) translateY(-5px);
+        }
+        .floating-nav .nav-item {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            transition: all 0.3s ease;
+        }
+        .floating-nav .nav-item:hover,
+        .floating-nav .nav-item.active {
+            background: rgba(0, 245, 255, 0.1);
+            color: var(--cyber-cyan);
+            transform: scale(1.1);
+        }
+
+        .floating-social {
+            position: fixed;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+        .floating-social .social-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: float 6s ease-in-out infinite;
+        }
+        .floating-social .social-icon:hover {
+            transform: translateX(-5px) scale(1.1);
+            border-color: rgba(0, 245, 255, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 245, 255, 0.2);
+        }
+        .floating-social a:nth-child(1):hover { color: var(--cyber-cyan); }
+        .floating-social a:nth-child(2):hover { color: var(--cyber-purple); }
+        .floating-social a:nth-child(3):hover { color: var(--cyber-pink); }
+        .floating-social a:nth-child(4):hover { color: var(--cyber-green); }
+        /* =================================================================== */
+        /* END: Floating Navigation & Socials CSS (ADDED) */
+        /* =================================================================== */
     </style>
 </head>
 <body>
@@ -1438,6 +1520,50 @@
     </footer>
 
     <!-- =================================================================== -->
+    <!-- START: Floating Navigation & Socials HTML (ADDED) -->
+    <!-- =================================================================== -->
+    <!-- Floating Navigation -->
+    <div class="floating-nav hidden md:flex">
+        <a href="#home" class="nav-item active">
+            <i class="fas fa-home"></i>
+        </a>
+        <a href="#about" class="nav-item">
+            <i class="fas fa-user"></i>
+        </a>
+        <a href="#skills" class="nav-item">
+            <i class="fas fa-cogs"></i>
+        </a>
+        <a href="#services" class="nav-item">
+            <i class="fas fa-briefcase"></i>
+        </a>
+        <a href="#projects" class="nav-item">
+            <i class="fas fa-folder-open"></i>
+        </a>
+        <a href="#contact" class="nav-item">
+            <i class="fas fa-envelope"></i>
+        </a>
+    </div>
+
+    <!-- Floating Social Icons -->
+    <div class="floating-social hidden lg:flex">
+        <a href="https://github.com/hosseintaheri-org" class="social-icon" target="_blank" style="animation-delay: 0s;">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="#" class="social-icon" target="_blank" style="animation-delay: 0.5s;">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://t.me/hosseintaheri_org" class="social-icon" target="_blank" style="animation-delay: 1s;">
+            <i class="fab fa-telegram"></i>
+        </a>
+        <a href="https://www.instagram.com/hosseintaheri_org" class="social-icon" target="_blank" style="animation-delay: 1.5s;">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+    <!-- =================================================================== -->
+    <!-- END: Floating Navigation & Socials HTML (ADDED) -->
+    <!-- =================================================================== -->
+
+    <!-- =================================================================== -->
     <!-- Advanced JavaScript Section (FIXED) -->
     <!-- =================================================================== -->
     <script>
@@ -1669,8 +1795,9 @@
             animateTrail();
         }
 
-        // Advanced Scroll Progress
-        function updateScrollProgress() {
+        // Advanced Scroll Progress and Floating Nav Active State
+        function updateScrollEffects() {
+            // Scroll Progress
             const scrollProgressBar = document.getElementById('scrollProgressBar');
             if (scrollProgressBar) {
                 const scrollTop = window.pageYOffset;
@@ -1678,7 +1805,27 @@
                 const scrollPercent = (scrollTop / docHeight);
                 scrollProgressBar.style.transform = `scaleX(${scrollPercent})`;
             }
+
+            // Floating Nav Active State
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.floating-nav a.nav-item');
+            let current = 'home';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id') || 'home';
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
         }
+
 
         // Smooth scrolling function
         function scrollToSection(sectionId) {
@@ -1913,11 +2060,11 @@ Frontend Developer (2019 - 2021)
         });
 
         // Add scroll event listeners
-        window.addEventListener('scroll', updateScrollProgress);
+        window.addEventListener('scroll', updateScrollEffects);
 
         // Add smooth scrolling to navigation links
         document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"], .floating-nav a[href^="#"]');
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();

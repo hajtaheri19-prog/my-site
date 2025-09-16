@@ -10,21 +10,6 @@
       ],
       "destination": "https://www.hosseintaheri.org/:path*",
       "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.hosseintaheri.org"
-        },
-        {
-          "type": "scheme",
-          "value": "http"
-        }
-      ],
-      "destination": "https://www.hosseintaheri.org/:path*",
-      "permanent": true
     }
   ],
   "headers": [
@@ -34,6 +19,15 @@
         {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
         }
       ]
     }

@@ -1,15 +1,4 @@
 {
-  "headers": [
-    {
-      "source": "/(.*)\\.(css|js|woff2)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000"
-        }
-      ]
-    }
-  ],
   "redirects": [
     {
       "source": "/:path*",
@@ -21,17 +10,26 @@
       ],
       "destination": "https://www.hosseintaheri.org/:path*",
       "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
     },
     {
-      "source": "/:path*",
-      "has": [
+      "source": "/sitemap.xml",
+      "headers": [
         {
-          "type": "scheme",
-          "value": "http"
+          "key": "Cache-Control",
+          "value": "no-cache"
         }
-      ],
-      "destination": "https://www.hosseintaheri.org/:path*",
-      "permanent": true
+      ]
     }
   ]
 }
